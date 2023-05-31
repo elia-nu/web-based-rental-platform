@@ -25,7 +25,7 @@ namespace Project4.Controllers
             {
                 Text = "dear " + user +
                 "have booking from " + d1 + " to " + d2 +
-                "sdwdaedjqdiqodn djkqwdnoqwidmqw;dqw qw dqd qd qdd" + body + "doqdm;qwd"
+                "sdwdaedjqdiqodn djkqwdnoqwidmqw;dqw qw dqd qd qdd" + body + "doqdm;qwkp;l;d"
             };
             using var smtp = new SmtpClient();
             smtp.Connect("smtp.ethereal.email", 587, SecureSocketOptions.StartTls);
