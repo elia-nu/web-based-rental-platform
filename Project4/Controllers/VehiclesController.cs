@@ -110,7 +110,6 @@ namespace Project4.Controllers
             vehicle.Vpath = await SaveImage(vehicle.ImageFile);
             _context.vehicles.Add(vehicle);
             await _context.SaveChangesAsync();
-
             return StatusCode(201);
         }
         [NonAction]
@@ -167,15 +166,7 @@ namespace Project4.Controllers
             return (_context.vehicles?.Any(e => e.Vid == id)).GetValueOrDefault();
         }
 
-        [HttpPost]
-        [Route("api/upload-image")]
-        public IActionResult UploadImage([FromBody] JObject data)
-        {
-            string base64String = data["image"].ToString();
-            byte[] imageBytes = Convert.FromBase64String(base64String);
-            // Save imageBytes to server or database
-            return Ok("Image uploaded successfully");
-        }
+
 
 
     }

@@ -13,19 +13,23 @@ namespace Project4.Controllers
     [ApiController]
     public class EmailController : ControllerBase
     {
-        
 
         [HttpPost]
-        public IActionResult SendEmail(string body)
+        public IActionResult SendEmail(string body, string user, string email1, string d1, string d2)
         {
             var email = new MimeMessage();
-            email.From.Add(MailboxAddress.Parse("zachery.bartoletti43@ethereal.email"));
-            email.From.Add(MailboxAddress.Parse("zachery.bartoletti43@ethereal.email"));
+            email.From.Add(MailboxAddress.Parse("monica.kihn25@ethereal.email"));
+            email.To.Add(MailboxAddress.Parse(email1));
             email.Subject = "booking";
-            email.Body = new TextPart(TextFormat.Html) { Text = body };
+            email.Body = new TextPart(TextFormat.Html)
+            {
+                Text = "dear " + user +
+                "have booking from " + d1 + " to " + d2 +
+                "sdwdaedjqdiqodn djkqwdnoqwidmqw;dqw qw dqd qd qdd" + body + "doqdm;qwd"
+            };
             using var smtp = new SmtpClient();
             smtp.Connect("smtp.ethereal.email", 587, SecureSocketOptions.StartTls);
-            smtp.Authenticate("zachery.bartoletti43@ethereal.email", "ghXNfZrThVFnG4x6JT");
+            smtp.Authenticate("monica.kihn25@ethereal.email", "pPhafpb7TEWR57e9H9");
             smtp.Send(email);
             smtp.Disconnect(true);
             return Ok();
