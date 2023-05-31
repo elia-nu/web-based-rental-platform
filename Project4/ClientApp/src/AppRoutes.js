@@ -14,7 +14,7 @@ import OwnerView from "./components/Administration/OwnerView";
 import EditProfile from "./components/Registration/editProfile";
 import Confermation from "./components/Registration/confermation";
 import ResetPassword from "./components/Registration/resetpassword";
-import Footer from "./components/Footer";
+
 import vlist from "./components/Vehicle/vlist";
 
 const AppRoutes = [
@@ -30,10 +30,7 @@ const AppRoutes = [
         path: '/fetch-data',
         element: <FetchData />
     },
-    {
-        path: '/footer',
-        element: <Footer />
-    },
+   
     ...ViewRoute,
     ...BookingRoute,
     {

@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+
 import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
@@ -73,58 +74,51 @@ export class NavMenu extends Component {
     };
   
     return (
-      <header>
-        <Navbar
-          className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3"
-          container
-          light
-        >
-          <NavbarBrand tag={Link} to="/search">
-            ZUES
-          </NavbarBrand>
-          <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-          <NavbarBrand className="sizenav">
-            <Collapse
-              className="d-sm-inline-flex flex-sm-row-reverse"
-              isOpen={!this.state.collapsed}
-              navbar
+        <header>
+            <Navbar
+                className="navbar-expand-md navbar-light bg-light fixed-top border-bottom"
+                expand="md"
             >
-              <ul className="navbar-nav flex-grow">
-                {links.map((link) => (
-                  <NavItem key={link.link}>
-                    <NavLink tag={Link} className="text-dark" to={link.link}>
-                      {link.label}
-                    </NavLink>
-                  </NavItem>
-                ))}
-              </ul>
-            </Collapse>
-          </NavbarBrand>
-          {shouldShowLogout && (
-            <Collapse
-              className="d-sm-inline-flex flex-sm-row-reverse"
-              isOpen={!this.state.collapsed}
-              navbar
-            >
-              <ul className="navbar-nav flex-grow">
-                <NavItem>
-                  <NavLink tag={Link} to="/profile" className="text-dark">{username}</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink
-                    tag={Link}
-                    className="text-dark"
-                    to="/search"
-                    onClick={logout}
-                  >
-                    Logout
-                  </NavLink>
-                </NavItem>
-              </ul>
-            </Collapse>
-          )}
-        </Navbar>
-      </header>
+                <NavbarBrand tag={Link} to="/search">
+                    ZUES
+                </NavbarBrand>
+                <NavbarToggler onClick={this.toggleNavbar} />
+                <Collapse isOpen={!this.state.collapsed} navbar>
+                    <ul className="navbar-nav ml-auto">
+                        {links.map((link) => (
+                            <NavItem key={link.link}>
+                                <NavLink tag={Link} className="nav-link text-dark" to={link.link}>
+                                    {link.label}
+                                </NavLink>
+                            </NavItem>
+                        ))}
+                        {shouldShowLogout && (
+                            <Fragment>
+                                <NavItem>
+                                    <NavLink
+                                        tag={Link}
+                                        to="/profile"
+                                        className="nav-link text-dark"
+                                    >
+                                        {username}
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink
+                                        tag={Link}
+                                        to="/search"
+                                        className="nav-link text-dark"
+                                        onClick={logout}
+                                    >
+                                        Logout
+                                    </NavLink>
+                                </NavItem>
+                            </Fragment>
+                        )}
+                    </ul>
+                </Collapse>
+            </Navbar>
+        </header>
     );
   }
 }

@@ -6,166 +6,167 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const defaultImageSrc = '/img/image_placeholder.png'
 const initialFieldValues = {
-  year:'',
-  type:'',
-  brand:'',
-  color:'',
-  price:'',
-  availabilityDate:'',
-  plateNo:'',
-  ownerId:'',
-  status:'Available',
-  vpath:'',
-  imageSrc: defaultImageSrc,
-  imageFile: null
+    year: '',
+    type: '',
+    brand: '',
+    color: '',
+    price: '',
+    availabilityDate: '',
+    plateNo: '',
+    ownerId: '',
+    status: 'Available',
+    vpath: '',
+    imageSrc: defaultImageSrc,
+    imageFile: null
 
 }
 const AddVehicle = () => {
-  const [values, setValues] = useState(initialFieldValues)
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    JSON.parse(localStorage.getItem("logstatus"))
-  );
-  const [formErrors, setFormErrors] = useState({});
-  const [ownerId,setOwnerId]=useState('');
+    const [values, setValues] = useState(initialFieldValues)
+    const [isLoggedIn, setIsLoggedIn] = useState(
+        JSON.parse(localStorage.getItem("logstatus"))
+    );
+    const [formErrors, setFormErrors] = useState({});
+    const [ownerId, setOwnerId] = useState('');
 
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate("/login");
-    }
-    setOwnerId(JSON.parse(localStorage.getItem("userid")));
-  }, [isLoggedIn, navigate]);
+    useEffect(() => {
+        if (!isLoggedIn) {
+            navigate("/login");
+        }
+        setOwnerId(JSON.parse(localStorage.getItem("userid")));
+    }, [isLoggedIn, navigate]);
 
- 
-  const handleSubmit = () => {
-    const errors = {};
-    if (!values.year) {
-      errors.year = "Please enter a year.";
-    } else if (values.year.toString().length < 4) {
-      errors.year = "Year must be at least 4 digits.";
-    }
-    if (!values.type) {
-      errors.type = "Please enter a type.";
-    }
-    if (!values.brand) {
-      errors.brand = "Please enter a brand.";
-    }
-    if (!values.color) {
-      errors.color = "Please enter a color.";
-    }
-    if (!values.price) {
-      errors.price = "Please enter a price.";
-    }
-    if (!values.availabilityDate) {
-      errors.availabilityDate = "Please enter an availability date.";
-    }
-    if (!values.plateNo) {
-      errors.plateNo = "Please enter a plate number.";
-    }
-    if (!values.imageSrc) {
-      errors.imageSrc = "Please upload a photo.";
-    }
-    const today = new Date();
-    const selectedDate = new Date(values.availabilityDate);
 
-    if (selectedDate < today) {
-      errors.availabilityDate = "Selected date cannot be behind current date.";
-    }
+    const handleSubmit = () => {
+        const errors = {};
+        if (!values.year) {
+            errors.year = "Please enter a year.";
+        } else if (values.year.toString().length < 4) {
+            errors.year = "Year must be at least 4 digits.";
+        }
+        if (!values.type) {
+            errors.type = "Please enter a type.";
+        }
+        if (!values.brand) {
+            errors.brand = "Please enter a brand.";
+        }
+        if (!values.color) {
+            errors.color = "Please enter a color.";
+        }
+        if (!values.price) {
+            errors.price = "Please enter a price.";
+        }
+        if (!values.availabilityDate) {
+            errors.availabilityDate = "Please enter an availability date.";
+        }
+        if (!values.plateNo) {
+            errors.plateNo = "Please enter a plate number.";
+        }
+        if (!values.imageSrc) {
+            errors.imageSrc = "Please upload a photo.";
+        }
+        const today = new Date();
+        const selectedDate = new Date(values.availabilityDate);
 
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-      return;
-    }
+        if (selectedDate < today) {
+            errors.availabilityDate = "Selected date cannot be behind current date.";
+        }
 
-    const formData = new FormData()
-    formData.append("year", values.year);
-    formData.append("type", values.type);
-    formData.append("brand", values.brand);
-    formData.append("color", values.color);
-    formData.append("price", values.price);
-    formData.append("availabilitydate", values.availabilityDate);
-    formData.append("ownerid", ownerId);
-    formData.append("plateno", values.plateNo);
-    formData.append("status", values.status);
-    formData.append('vpath', values.vpath)
-    formData.append('imageFile', values.imageFile)
-    formData.append('imageSrc', values.imageSrc)
-    axios
-      .post("https://localhost:7075/api/Vehicles/", formData)
-      .then((res) => {
-        console.log(res.data);
-        toast.success("Vehicle added successfully!");
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Failed to add vehicle.");
-      });
-  };
+        if (Object.keys(errors).length > 0) {
+            setFormErrors(errors);
+            return;
+        }
 
-  const showPreview = e => {
-    if (e.target.files && e.target.files[0]) {
-        let imageFile = e.target.files[0];
-        const reader = new FileReader();
-        reader.onload = x => {
+        const formData = new FormData()
+        formData.append("year", values.year);
+        formData.append("type", values.type);
+        formData.append("brand", values.brand);
+        formData.append("color", values.color);
+        formData.append("price", values.price);
+        formData.append("availabilitydate", values.availabilityDate);
+        formData.append("ownerid", ownerId);
+        formData.append("plateno", values.plateNo);
+        formData.append("status", values.status);
+        formData.append('vpath', values.vpath)
+        formData.append('imageFile', values.imageFile)
+        formData.append('imageSrc', values.imageSrc)
+        axios
+            .post("https://localhost:7045/api/Vehicles/", formData)
+            .then((res) => {
+                console.log(res.data);
+                toast.success("Vehicle added successfully!");
+            })
+            .catch((err) => {
+                console.log(err);
+                toast.error("Failed to add vehicle.");
+            });
+    };
+
+    const showPreview = e => {
+        if (e.target.files && e.target.files[0]) {
+            let imageFile = e.target.files[0];
+            const reader = new FileReader();
+            reader.onload = x => {
+                setValues({
+                    ...values,
+                    imageFile,
+                    imageSrc: x.target.result
+                })
+            }
+            reader.readAsDataURL(imageFile)
+        }
+        else {
             setValues({
                 ...values,
-                imageFile,
-                imageSrc: x.target.result
+                imageFile: null,
+                imageSrc: defaultImageSrc
             })
         }
-        reader.readAsDataURL(imageFile)
     }
-    else {
+    const handleInputChange = e => {
+        const { name, value } = e.target;
         setValues({
             ...values,
-            imageFile: null,
-            imageSrc: defaultImageSrc
+            [name]: value
         })
-    }
-}
-const handleInputChange = e => {
-  const { name, value } = e.target;
-  setValues({
-      ...values,
-      [name]: value
-  })
 
-}
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    
-    setFormErrors((errors) => ({
-      ...errors,
-      [name]: value ? "" : `Please enter a ${name}.`,
-    }));
-    switch (name) {
-      case "year":
-        handleInputChange(event);
-        break;
-      case "type":
-        handleInputChange(event);
-        break;
-        case "brand":
-          handleInputChange(event);
-          break;
-        case "color":
-          handleInputChange(event);
-          break;
-        case "price":
-          handleInputChange(event);
-          break;
-        case "availabilityDate":
-          handleInputChange(event);
-          break;
-        case "plateNo":
-          handleInputChange(event);
-          break;
-        default:
-          break;
-      }
+    }
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+
+        setFormErrors((errors) => ({
+            ...errors,
+            [name]: value ? "" : `Please enter a ${name}.`,
+        }));
+        switch (name) {
+            case "year":
+                handleInputChange(event);
+                break;
+            case "type":
+                handleInputChange(event);
+                break;
+            case "brand":
+                handleInputChange(event);
+                break;
+            case "color":
+                handleInputChange(event);
+                break;
+            case "price":
+                handleInputChange(event);
+                break;
+            case "availabilityDate":
+                handleInputChange(event);
+                break;
+            case "plateNo":
+                handleInputChange(event);
+                break;
+            default:
+                break;
+        }
     };
       
 

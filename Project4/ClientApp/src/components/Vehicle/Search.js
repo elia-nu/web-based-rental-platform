@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import Footer from "../Footer";
 import "./search.css";
 import Pagination from '../Pagination';
 import axios from "axios";
@@ -58,145 +57,192 @@ const Search = () => {
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
 
-    const paginate = pageNumber => setCurrentPage(pageNumber);
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
     return (
         <>
-        
-        <div className="hero">
+            <div className="container-fluid px-0">
+                <div className="hero d-flex align-items-center">
+                    <div className="card mx-auto w-75 mt-0 p-3 p-md-5 text-center">
+                        <h1 className="mb-4">Find Your Dream Car Today</h1>
+                        <p className="lead mb-5">
+                            Search our inventory of high-quality, pre-owned cars and find the perfect
+                            vehicle for your needs and budget.
+                        </p>
+                        <div className="input-group">
+                            <input
+                                type="search"
+                                className="form-control rounded"
+                                id="search"
+                                placeholder="Search cars..."
+                                aria-label="Search"
+                                aria-describedby="search-addon"
+                                onChange={(e) => setSearchText(e.target.value)}
+                            />
+                            <input
+                                type="date"
+                                className="form-control rounded"
+                                placeholder="Date"
+                                aria-label="Date"
+                                aria-describedby="search-addon"
+                                onChange={(e) => setDate(e.target.value)}
+                            />
+                            <button
+                                className="btn btn-primary rounded"
+                                type="button"
+                                onClick={handleSearch}
+                            >
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+              <div className="vo">
+                <div className="vo py-5">
+                    <div className="container">
+                        <h1 className="text-center">Features &amp; Benefits</h1>
+                        <hr className="mb-5" />
 
-            <div className="card mx-auto w-75 mt-0 p-5">
-                <div className="card-body">
-                    <div className="input-group">
-                        <input
-                            type="search"
-                            className="form-control rounded"
-                            id="search"
-                            placeholder="Search cars..."
-                            aria-label="Search"
-                            aria-describedby="search-addon"
-                            onChange={(e) => setSearchText(e.target.value)}
-                        />
-                        <input
-                            type="date"
-                            className="form-control rounded"
-                            placeholder="Date"
-                            aria-label="Date"
-                            aria-describedby="search-addon"
-                            onChange={(e) => setDate(e.target.value)}
-                        />
-                        <input
-                            className="btn btn-primary"
-                            type="button"
-                            value="Search"
-                            onClick={handleSearch}
-                        />
+                        <div className="row gx-4 gx-md-5">
+                            <div className="col-12 col-md-6 col-lg-4">
+                                <h2 className="text-center">Features</h2>
+                                <ul>
+                                    <li>Easy access</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                </ul>
+                            </div>
+
+                            <div className="col-12 col-md-6 col-lg-4">
+                                <h2 className="text-center">Benefits</h2>
+                                <ul>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                </ul>
+                            </div>
+
+                            <div className="col-12 col-lg-4">
+                                <img
+                                    src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp"
+                                    alt="Los Angeles Skyscrapers"
+                                    
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-        </div>
-        <div className="container">
-           
-
-            <div className="row">
-                <div className="col-md-12">
-                        <h2>Cars</h2>
-
-                        <Pagination
-                            postsPerPage={postsPerPage}
-                            totalPosts={data.length}
-                            paginate={paginate}
-                        />
-                    
-                        
+                <div className="container py-5">
+                    <h2 className="text-center mb-4">Cars</h2>
                     {isLoading ? (
                         <div>Loading...</div>
-                        ) : (
-                        <div className="card-columns row-cols-4">
-                            {data.map((item) => (
-                                <div key={item.id} className="card">
-                                    <img src="img/{item.type}" className="card-img-top" alt={""} />
-                                    <div className="card-body">
-                                        <h5 className="card-title text-primary">{item.type}</h5>
-                                        <h5 className="card-title text-primary">{item.brand}</h5>
-                                        <p className="card-text">{item.year}</p>
-                                        <p className="card-text">{item.color}</p>
-                                        <p className="card-text">
-                                            <span className="price text-danger">${item.price}</span>
-                                        </p>
-                                        <p className="card-text">{item.availabilityDate}</p>
-                                        <p className="card-text">{item.plateno}</p>
-                                        <p className="card-text">{item.ownerid}</p>
-                                        <p className="card-text">{item.status}</p>
-                                        <p className="card-text">
-                                            <a href="/detail">
-                                                <img
-                                                    src={CAR_IMAGE_URL}
-                                                    alt="View Details"
+                    ) : (
+                        <div className="row row-cols-1 row-cols-md-2 g-4">
+                                {currentPosts.map((item) => (
+                                <div key={item.id} className="col-12 col-md-6 col-lg-4">
+                                    <div className="card mb-4">
+                                        <img
+                                            src={`./img/${item.vpath}`}
+                                            className="card-img-top"
+                                            alt={`Car ${item.vid}`}
+                                        />
+                                        <div className="card-body">
+                                            <h5 className="card-title text-primary">{item.type}</h5>
+                                            <h5 className="card-title text-primary">{item.brand}</h5>
+                                            <p className="card-text">{item.year}</p>
+                                            <p className="card-text">{item.color}</p>
+                                            <p className="card-text">
+                                                <span className="price text-danger">${item.price}</span>
+                                            </p>
+                                            <p className="card-text">{item.availabilityDate}</p>
+                                            <div className="card-footer">
+                                                <a
+                                                    href="/detail"
+                                                    className="btn btn-dark"
                                                     onClick={() => handleData(item.vid)}
-                                                />
-                                            </a>
-                                        </p>
+                                                >
+                                                    Detail
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             ))}
                         </div>
-
-
                     )}
+
+                    <Pagination
+                        postsPerPage={postsPerPage}
+                        totalPosts={data.length}
+                        paginate={paginate}
+                    />
                 </div>
-            </div>
 
+                <div className="vo1 py-5">
+                    <div className="container">
+                        <h1 className="text-center">Features &amp; Benefits</h1>
+                        <hr className="mb-5" />
 
-            <div className="container">
-                <div className="vo">
-                    <h1>Features & Benefits</h1>
-                    <h1>____________________</h1>
+                        <div className="row gx-4 gx-md-5">
+                            <div className="col-12 col-md-6 col-lg-4">
+                                <h2 className="text-center">Features</h2>
+                                <ul>
+                                    <li>Easy access</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                </ul>
+                            </div>
 
+                            <div className="col-12 col-md-6 col-lg-4">
+                                <h2 className="text-center">Benefits</h2>
+                                <ul>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
+                                </ul>
+                            </div>
 
-                    <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-                        <div class="col">
-                            <h1> Featuers </h1>
-                            <p> * Easy access  </p>
-                            <p> * aegsegsrbgsgsgsrgsgsgsgggagaga  </p>
-                            <p> * aegsegsrbgsgsgsrgsgsgsgggagaga  </p>
-                            <p> * aegsegsrbgsgsgsrgsgsgsgggagaga  </p>
-                            <p> * aegsegsrbgsgsgsrgsgsgsgggagaga  </p>
-                            <p> * aegsegsrbgsgsgsrgsgsgsgggagaga  </p>
-                            <p> * aegsegsrbgsgsgsrgsgsgsgggagaga  </p>
-                            <p> * aegsegsrbgsgsgsrgsgsgsgggagaga  </p>
-                            <p> * aegsegsrbgsgsgsrgsgsgsgggagaga  </p>
-                        </div>
-
-                        <div class="col">
-                            <h1> Benfits </h1>
-                            <p> * aegsegsrbgsgsgsrgsgsgsgggagaga  </p>
-                            <p> * aegsegsrbgsgsgsrgsgsgsgggagaga  </p>
-                            <p> * aegsegsrbgsgsgsrgsgsgsgggagaga  </p>
-                            <p> * aegsegsrbgsgsgsrgsgsgsgggagaga  </p>
-                            <p> * aegsegsrbgsgsgsrgsgsgsgggagaga  </p>
-                            <p> * aegsegsrbgsgsgsrgsgsgsgggagaga  </p>
-                            <p> * aegsegsrbgsgsgsrgsgsgsgggagaga  </p>
-                            <p> * aegsegsrbgsgsgsrgsgsgsgggagaga  </p>
-                            <p> * aegsegsrbgsgsgsrgsgsgsgggagaga  </p>
-                        </div>
-
-                        <div className="col">
-                                <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp" alt="Los Angeles Skyscrapers" >
-                                </img>
-                                <img src="../../b" alt="" >
-                            </img>
+                            <div className="col-12 col-lg-4">
+                                <img
+                                    src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp"
+                                    alt="Los Angeles Skyscrapers"
+                                    className="img-fluid"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-        </div>
         </>
-      
-
-  );
+    );
 };
 
 export default Search;

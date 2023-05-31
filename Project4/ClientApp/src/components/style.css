@@ -1,12 +1,12 @@
 ﻿footer {
-    position: sticky;
+    position:relative;
     left: 0;
     bottom: 0;
     width: 100%;
     background-color: red;
     color: white;
     text-align: center;
-    height:45px;
+   
     
 }
 .vo {
@@ -16,15 +16,10 @@
     .vo img {
         height: 420px;
         width: 300px;
-        padding-top: 10px;
+        margin-top: 50px;
     }
 .content {
-    background-image:url(Vehicle/img/b.jpg);
-    background-repeat:no-repeat;
-    background-size:cover;
 }
-
-
 
 .hero form {
     display: flex;

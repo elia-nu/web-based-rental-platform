@@ -129,9 +129,21 @@ body{
     font-size: 20px;
     font-weight: bold;
   }
+.vo1 {
+    text-align: center;
+    background-color: black;
+    color: #e4a316;
+}
+
+    .vo1 img {
+        height: 420px;
+        width: 300px;
+        padding-top: 10px;
+    }
   
   .vo{
       text-align:center;
+      
   }
     .vo img {
         height: 420px;
@@ -141,10 +153,16 @@ body{
 .hero {
     height: 70vh;
     width: 100%;
-    background-image: url(./img/b.jpg);
+    background-image: url(./img/a.jpg);
     background-size: cover;
     background-position: center;
 }
+    .hero .card {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        padding-top:50px;
+    }
     .hero form {
         display: flex;
         flex-wrap: wrap;

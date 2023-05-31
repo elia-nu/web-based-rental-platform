@@ -1,5 +1,5 @@
 import React from 'react'
-import AddVehicle1 from './Addvehicle1'
+
 
 export default function vlist(){
  return(
@@ -14,7 +14,7 @@ export default function vlist(){
       </div>
 </div>
 <div className='col-md-4'>
-   <AddVehicle1/>
+   
 </div>
 <div className='col-md-8'>
 <h1> vehicle list   </h1>
