@@ -15,7 +15,7 @@ import EditProfile from "./components/Registration/editProfile";
 import Confermation from "./components/Registration/confermation";
 import ResetPassword from "./components/Registration/resetpassword";
 
-import vlist from "./components/Vehicle/vlist";
+
 
 const AppRoutes = [
     {

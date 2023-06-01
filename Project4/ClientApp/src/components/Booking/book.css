@@ -1,0 +1,87 @@
+.booking-card {
+    background-color: #f8f9fa;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    .booking-card .card-title {
+        color: #333;
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .booking-card form {
+        padding: 30px;
+    }
+
+    .booking-card .form-group {
+        margin-bottom: 20px;
+    }
+
+    .booking-card label {
+        color: #333;
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .booking-card input[type="date"],
+    .booking-card input[type="number"] {
+        background-color: #fff;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        color: #333;
+        font-size: 16px;
+        padding: 10px;
+        width: 100%;
+    }
+
+        .booking-card input[type="date"]:focus,
+        .booking-card input[type="number"]:focus {
+            border: 1px solid #ccc;
+            box-shadow: none;
+            outline: none;
+        }
+
+    .booking-card .btn-primary {
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+        .booking-card .btn-primary:hover {
+            background-color: #0062cc;
+        }
+
+@media (max-width: 768px) {
+    .booking-card {
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+        .booking-card .card-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .booking-card form {
+            padding: 20px;
+        }
+
+        .booking-card .btn-primary {
+            width: 100%;
+        }
+}
+

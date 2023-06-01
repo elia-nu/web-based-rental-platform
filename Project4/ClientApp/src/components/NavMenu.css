@@ -1,4 +1,4 @@
-﻿    .button:hover {
+﻿ .button:hover {
         background-color: darkblue;
     }
 .link {
@@ -12,7 +12,7 @@
     color: red;
     font-family: 'Montserrat', sans-serif;
 }
-/*
+
 header {
     position: fixed;
     top: 0;
@@ -61,7 +61,7 @@ header {
     margin-left: auto;
 }
 
-@media (max-width: 991px) {
+@media (min-width: 760px) and (max-width: 990px) {
     .navbar-collapse {
         background-color: #fff;
         position: fixed;
@@ -89,18 +89,48 @@ header {
     .nav-link {
         margin-bottom: 20px;
     }
-*/
+}
+
+    @media (max-width: 991px) {
+        .navbar-collapse {
+            background-color: #fff;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 998;
+            padding: 20px;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+            transform: translateX(100%);
+        }
+
+            .navbar-collapse.show {
+                transform: translateX(0);
+            }
+
+        .navbar-nav {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav-link {
+            margin-bottom: 20px;
+        }
+        /*
 header {
     position: relative;
     z-index: 999;
-    background: linear-gradient(to right, #8f44fd, #c0392b);
+    background:#1b0101;
     padding: 20px;
 }
 
 .navbar-brand {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #fff;
+    color: black;
     font-family: 'Montserrat', sans-serif;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -109,7 +139,7 @@ header {
 .nav-link {
     font-size: 1.2rem;
     font-weight: 600;
-    color: #fff;
+    color:#f8ac07;
     font-family: 'Playfair Display', serif;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -118,7 +148,7 @@ header {
 }
 
     .nav-link:hover {
-        color: #8f44fd;
+        color: #8f44fd#6b0f05;
         transform: translateY(-3px);
     }
 
@@ -140,6 +170,9 @@ header {
 
 .navbar-nav {
     margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .logo {
@@ -176,4 +209,6 @@ header {
     .nav-link {
         margin-bottom: 20px;
     }
-}
+        */
+    }
+    

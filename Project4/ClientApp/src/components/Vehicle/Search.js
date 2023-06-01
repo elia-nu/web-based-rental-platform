@@ -101,50 +101,7 @@ const Search = () => {
                 
               <div className="vo">
                 <div className="vo py-5">
-                    <div className="container">
-                        <h1 className="text-center">Features &amp; Benefits</h1>
-                        <hr className="mb-5" />
-
-                        <div className="row gx-4 gx-md-5">
-                            <div className="col-12 col-md-6 col-lg-4">
-                                <h2 className="text-center">Features</h2>
-                                <ul>
-                                    <li>Easy access</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                </ul>
-                            </div>
-
-                            <div className="col-12 col-md-6 col-lg-4">
-                                <h2 className="text-center">Benefits</h2>
-                                <ul>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                </ul>
-                            </div>
-
-                            <div className="col-12 col-lg-4">
-                                <img
-                                    src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp"
-                                    alt="Los Angeles Skyscrapers"
-                                    
-                                />
-                            </div>
-                        </div>
-                    </div>
+                        import "./search.css";
                 </div>
             </div>
 
@@ -186,6 +143,7 @@ const Search = () => {
                             ))}
                         </div>
                     )}
+                   
 
                     <Pagination
                         postsPerPage={postsPerPage}

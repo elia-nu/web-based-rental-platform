@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { event } from 'jquery';
+import "./book.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 const AddBooking = () => {
     const [newbooking, setNewBooking] = useState({});
@@ -51,24 +53,26 @@ const AddBooking = () => {
 
       
     return (
-        <div>
-        <div>
-        
-                <label>Dateofrent</label>
-                <input type="date" name='Dateofrent' onChange={(e)=> setDateOfRent(e.target.value)} />
-                </div>
-                <div>
-                <label>Dateofreturn</label>
-                <input type="date" name='Dateofreturn' onChange={(e)=>setDateOfReturn(e.target.value)} />
-                <label>Price</label>
-                <input type="number" name='Price' placeholder={price} disabled value={price} />
-                <div>
-                <a href='/addbooking2'>
-                  <input type="submit" value="Book" onClick={()=>handleSubmit()}/>
-                </a>
-                </div>
-                </div>
-      </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Booking Form</h5>
+                <form>
+                    <div class="form-group">
+                        <label for="date-of-rent">Date of Rent</label>
+                        <input type="date" class="form-control" id="date-of-rent" name='Dateofrent' onChange={(e) => setDateOfRent(e.target.value)} />
+                    </div>
+                    <div class="form-group">
+                        <label for="date-of-return">Date of Return</label>
+                        <input type="date" class="form-control" id="date-of-return" name='Dateofreturn' onChange={(e) => setDateOfReturn(e.target.value)} />
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="number" class="form-control" id="price" name='Price' placeholder={price} disabled value={price} />
+                    </div>
+                    <button type="submit" class="btn btn-primary" onClick={() => handleSubmit()}>Book</button>
+                </form>
+            </div>
+        </div>
     )
   
 }

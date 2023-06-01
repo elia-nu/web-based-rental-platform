@@ -32,13 +32,11 @@ export class NavMenu extends Component {
         { label: 'Addemployee', link: '/addemployee' },
         { label: 'Employee', link: '/employeeview' },
         { label: 'Customer', link: '/customerview' },
-            { label: 'Owner', link: '/ownerview' },
-            { label: 'Footer', link: '/footer' },
-            { label: 'vlist', link: '/vlist' },
-            { label: 'AddVehicle', link: '/addvehicle' },
-            { label: 'Vehicle', link: '/view' },
-            { label: 'ViewBookedVehicle', link: '/viewbookedvehicle' },
-            { label: 'Vi', link: '/app1' },
+        { label: 'Owner', link: '/ownerview' },
+        { label: 'AddVehicle', link: '/addvehicle' },
+        { label: 'Vehicle', link: '/view' },
+        { label: 'ViewBookedVehicle', link: '/viewbookedvehicle' },
+            
       ],
       Employee: [
         { label: 'Home', link: '/search' },
