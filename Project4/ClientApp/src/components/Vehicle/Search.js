@@ -62,49 +62,100 @@ const Search = () => {
     };
     return (
         <>
-            <div className="container-fluid px-0">
-                <div className="hero d-flex align-items-center">
-                    <div className="card mx-auto w-75 mt-0 p-3 p-md-5 text-center">
-                        <h1 className="mb-4">Find Your Dream Car Today</h1>
-                        <p className="lead mb-5">
-                            Search our inventory of high-quality, pre-owned cars and find the perfect
-                            vehicle for your needs and budget.
-                        </p>
-                        <div className="input-group">
-                            <input
-                                type="search"
-                                className="form-control rounded"
-                                id="search"
-                                placeholder="Search cars..."
-                                aria-label="Search"
-                                aria-describedby="search-addon"
-                                onChange={(e) => setSearchText(e.target.value)}
-                            />
-                            <input
-                                type="date"
-                                className="form-control rounded"
-                                placeholder="Date"
-                                aria-label="Date"
-                                aria-describedby="search-addon"
-                                onChange={(e) => setDate(e.target.value)}
-                            />
-                            <button
-                                className="btn btn-primary rounded"
-                                type="button"
-                                onClick={handleSearch}
-                            >
-                                Search
-                            </button>
+            <section class="hero1">
+                <div class="container">
+                    <h1 class="hero-title">Welcome to Zeus Car Rental</h1>
+                    <p class="hero-description">Rent the car of your dreams today!</p>
+                    <div className="hero d-flex align-items-center">
+                        <div className="card mx-auto w-75 mt-0 p-3 p-md-5 text-center">
+                            <h1 className="mb-4">Find Your Dream Car Today</h1>
+                         
+                            <div className="input-group">
+                                <input
+                                    type="search"
+                                    className="form-control rounded"
+                                    id="search"
+                                    placeholder="Search cars..."
+                                    aria-label="Search"
+                                    aria-describedby="search-addon"
+                                    onChange={(e) => setSearchText(e.target.value)}
+                                />
+                                <input
+                                    type="date"
+                                    className="form-control rounded"
+                                    placeholder="Date"
+                                    aria-label="Date"
+                                    aria-describedby="search-addon"
+                                    onChange={(e) => setDate(e.target.value)}
+                                />
+                                <button
+                                    className="btn btn-primary rounded"
+                                    type="button"
+                                    onClick={handleSearch}
+                                >
+                                    Search
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                
+                </div>
+            </section>
+
+            <div className="vo1 py-5">
+                <div className="container">
+                    <h1 className="text-center">Features &amp; Benefits</h1>
+                    <hr className="mb-5" />
+
+                    <div className="row gx-4 gx-md-5">
+                        <div className="col-12 col-md-6 col-lg-4">
+                            <h2 className="text-center">Convenient and</h2>
+                            <h3 className="text-center">Affordable</h3>
+                            <ul>
+
+                                Our platform offers customers
+                                convenient and affordable car
+                                rental options, with a variety of
+                                cars to choose from at
+                                competitive prices.
+                            </ul>
+                        </div>
+
+                        <div className="col-12 col-md-6 col-lg-4">
+                            <h2 className="text-center">Easy to List</h2>
+                            <h3 className="text-center">Cars</h3>
+                            <ul>
+
+                                Our platform makes it easy
+                                for car owners to list their
+                                cars and manage their
+                                availability, pricing, and other
+                                details.
+
+                            </ul>
+                        </div>
+
+                        <div className="col-12 col-md-6 col-lg-4 bg-suc">
+                            <h2 className="text-center">Additional Income </h2>
+                            <ul>
+
+                                Car owners can earn extra
+                                income by renting their cars
+                                on our platform, making their
+                                cars more profitable and
+                                useful.
+
+                            </ul>
                         </div>
                     </div>
                 </div>
-                
-              <div className="vo">
-                <div className="vo py-5">
-                        import "./search.css";
-                </div>
             </div>
 
+            <div className="container-fluid px-0">
+
+                
+               
                 <div className="container py-5">
                     <h2 className="text-center mb-4">Cars</h2>
                     {isLoading ? (
@@ -151,53 +202,21 @@ const Search = () => {
                         paginate={paginate}
                     />
                 </div>
-
-                <div className="vo1 py-5">
-                    <div className="container">
-                        <h1 className="text-center">Features &amp; Benefits</h1>
-                        <hr className="mb-5" />
-
-                        <div className="row gx-4 gx-md-5">
-                            <div className="col-12 col-md-6 col-lg-4">
-                                <h2 className="text-center">Features</h2>
-                                <ul>
-                                    <li>Easy access</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                </ul>
+                <section class="about-us py-5">
+                    <div class="container">
+                        <h2 class="section-title">About Zeus Car Rental</h2>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>Zeus Car Rental is a leading car rental company that offers a wide range of vehicles for rent. We have been in the business for over 10 years and have built a reputation for providing exceptional service and quality vehicles.</p>
+                                <p>Our mission is to provide our customers with the best car rental experience possible. We offer competitive prices, flexible rental options, and a variety of vehicle types to choose from.</p>
                             </div>
-
-                            <div className="col-12 col-md-6 col-lg-4">
-                                <h2 className="text-center">Benefits</h2>
-                                <ul>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                    <li>aegsegsrbgsgsgsrgsgsgsgggagaga</li>
-                                </ul>
-                            </div>
-
-                            <div className="col-12 col-lg-4">
-                                <img
-                                    src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp"
-                                    alt="Los Angeles Skyscrapers"
-                                    className="img-fluid"
-                                />
+                            <div class="col-md-6">
+                                <img src="img/about.jpg" alt="Zeus Car Rental" class="img-fluid"></img>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
+               
             </div>
         </>
     );

@@ -3,6 +3,8 @@ import axios from 'axios'
 import { MDBTable, MDBTableBody, MDBTableHead } from 'mdb-react-ui-kit';
 import EditVehicle from "./EditVehicle";
 import { useNavigate } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 const Detail = () => {
     const [data, setData] = useState([]);
     const item = useMemo(() => JSON.parse(localStorage.getItem("data")), []);
@@ -62,70 +64,42 @@ const Detail = () => {
     };
     return (
       <Fragment>
-        <MDBTable>
-          <MDBTableHead>
-            <tr>
-              <th>ID</th>
-              <th>Year</th>
-              <th>Type</th>
-              <th>Brand</th>
-              <th>Color</th>
-              <th>Price</th>
-              <th>AvailabilityDate</th>
-              <th>Plateno</th>
-              <th>Ownerid</th>
-              <th>Status</th>
-              <th>VeliclePhoto</th>
-            </tr>
-          </MDBTableHead>
-          <MDBTableBody>
-            {
-              <tr key={data.id}>
-                <td>{1}</td>
-                <td>{data.year}</td>
-                <td>{data.type}</td>
-                <td>{data.brand}</td>
-                <td>{data.color}</td>
-                <td>{data.price}</td>
-                <td>{data.availabilityDate}</td>
-                <td>{data.plateno}</td>
-                <td>{data.ownerid}</td>
-                <td>{data.status}</td>
-                <td>{data.veliclePhoto}</td>
-                <td>
-                  <a href="/editvehicle">
-                    <input
-                      type="submit"
-                      value="Edit"
-                      onClick={() =>
+  
+         
+   
+
+            <Card className="car-details">
+                <Card.Img variant="top" src="/img/sun.jpg" alt={`${data.type} ${data.type}`} />
+                <Card.Body>
+                    <Card.Title>{data.type} {data.brand}</Card.Title>
+                    <Card.Text>
+                        <ul>
+                            <li><strong>Year:</strong> {data.color}</li>
+                            <li><strong>Price:</strong> ${data.year}</li>
+                            <li><strong>Color:</strong> {data.availabilityDate}</li>
+                            <li><strong>Mileage:</strong> {data.price} miles</li>
+                            <li><strong>Description:</strong> {data.plateno}</li>
+                        </ul>
+                    </Card.Text>
+                    <Button variant="primary" onClick={() =>
                         handleDataEdit(
-                          data.vid,
-                          data.year,
-                          data.type,
-                          data.brand,
-                          data.color,
-                          data.price,
-                          data.availabilityDate,
-                          data.ownerid,
-                          data.plateno,
-                          data.status,
-                          data.veliclePhoto
-                        )
-                      }
-                    />
-                  </a>
-                  <a href="/addbooking">
-                    <input
-                      type="submit"
-                      value="Book"
-                      onClick={() => handleDataBook(data.vid, data.price)}
-                    />
-                  </a>
-                </td>
-              </tr>
-            }
-          </MDBTableBody>
-        </MDBTable>
+                            data.vid,
+                            data.year,
+                            data.type,
+                            data.brand,
+                            data.color,
+                            data.price,
+                            data.availabilityDate,
+                            data.ownerid,
+                            data.plateno,
+                            data.status,
+                            data.veliclePhoto
+                        )}>Edit
+                    </Button>
+                    <Button variant="primary" onClick={() => handleDataBook(data.vid, data.price)}>Book</Button>
+                </Card.Body>
+            </Card>
+
       </Fragment>
   ); 
 };     

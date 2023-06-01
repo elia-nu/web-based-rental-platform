@@ -33,9 +33,7 @@ export class NavMenu extends Component {
         { label: 'Employee', link: '/employeeview' },
         { label: 'Customer', link: '/customerview' },
         { label: 'Owner', link: '/ownerview' },
-        { label: 'AddVehicle', link: '/addvehicle' },
-        { label: 'Vehicle', link: '/view' },
-        { label: 'ViewBookedVehicle', link: '/viewbookedvehicle' },
+          
             
       ],
       Employee: [
@@ -85,7 +83,7 @@ export class NavMenu extends Component {
                     <ul className="navbar-nav ml-auto">
                         {links.map((link) => (
                             <NavItem key={link.link}>
-                                <NavLink tag={Link} className="nav-link text-dark nav-link-hover" to={link.link}>
+                                <NavLink tag={Link} className="nav-link-hover" to={link.link}>
                                     {link.label}
                                 </NavLink>
                             </NavItem>
