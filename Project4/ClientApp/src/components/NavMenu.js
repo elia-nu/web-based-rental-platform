@@ -72,11 +72,11 @@ export class NavMenu extends Component {
       window.location.reload(true);
       Link.push('/search');
     };
-  
+
     return (
         <header>
             <Navbar
-                className="navbar-expand-md navbar-light bg-light fixed-top border-bottom"
+                className="navbar-expand-md navbar-light bg-light  border-bottom"
                 expand="md"
             >
                 <NavbarBrand tag={Link} to="/search">
@@ -87,7 +87,7 @@ export class NavMenu extends Component {
                     <ul className="navbar-nav ml-auto">
                         {links.map((link) => (
                             <NavItem key={link.link}>
-                                <NavLink tag={Link} className="nav-link text-dark" to={link.link}>
+                                <NavLink tag={Link} className="nav-link text-dark nav-link-hover" to={link.link}>
                                     {link.label}
                                 </NavLink>
                             </NavItem>
@@ -98,7 +98,7 @@ export class NavMenu extends Component {
                                     <NavLink
                                         tag={Link}
                                         to="/profile"
-                                        className="nav-link text-dark"
+                                        className="nav-link text-dark nav-link-hover"
                                     >
                                         {username}
                                     </NavLink>
@@ -107,7 +107,7 @@ export class NavMenu extends Component {
                                     <NavLink
                                         tag={Link}
                                         to="/search"
-                                        className="nav-link text-dark"
+                                        className="nav-link text-dark nav-link-hover"
                                         onClick={logout}
                                     >
                                         Logout
@@ -118,6 +118,7 @@ export class NavMenu extends Component {
                     </ul>
                 </Collapse>
             </Navbar>
+
         </header>
     );
   }

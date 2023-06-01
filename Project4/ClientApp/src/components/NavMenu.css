@@ -1,80 +1,179 @@
-﻿a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+﻿    .button:hover {
+        background-color: darkblue;
+    }
+.link {
+    color: black;
+    transition: color 0.3s ease-in-out;
+}
+.link:hover {
+        color: blue;
+}
+.nav-link-hover:hover {
+    color: red;
+    font-family: 'Montserrat', sans-serif;
+}
+/*
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background-color: #fff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+.navbar-brand {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #8f44fd;
+    font-family: 'Open Sans', sans-serif;
 }
 
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-.sizenav {
-  font-size: 16px;
-}
-@media (max-width: 576px) {
-  .navbar-expand-sm .navbar-toggler {
-    display: block;
-  }
-  .navbar-expand-sm .navbar-nav .nav-link {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-  }
-  .navbar-expand-sm .navbar-collapse {
-    display: none;
-  }
-  .navbar-expand-sm .navbar-nav .nav-link {
-    display: block;
-  }
-  .navbar-expand-sm .navbar-nav {
-    flex-direction: column;
-  }
-  .navbar-expand-sm .collapse.show {
-    display: block;
-  }
-}
-a.navbar-brand {
-    white-space: normal;
-    text-align: center;
-    word-break: break-all;
+.nav-link {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #222;
+    font-family: 'Roboto', sans-serif;
 }
 
-a {
-    color: #0077cc;
+    .nav-link:hover {
+        color: #8f44fd;
+    }
+
+.navbar-toggler {
+    border: none;
+    background-color: transparent;
 }
 
-.btn-primary {
+.navbar-toggler-icon {
+    background-image: url('https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png');
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+}
+
+.navbar-toggler:focus {
+    outline: none;
+}
+
+.navbar-nav {
+    margin-left: auto;
+}
+
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background-color: #fff;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 998;
+        padding: 20px;
+        overflow-y: auto;
+        transition: all 0.3s ease;
+        transform: translateX(100%);
+    }
+
+        .navbar-collapse.show {
+            transform: translateX(0);
+        }
+
+    .navbar-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-link {
+        margin-bottom: 20px;
+    }
+*/
+header {
+    position: relative;
+    z-index: 999;
+    background: linear-gradient(to right, #8f44fd, #c0392b);
+    padding: 20px;
+}
+
+.navbar-brand {
+    font-size: 2.5rem;
+    font-weight: 700;
     color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+.nav-link {
+    font-size: 1.2rem;
+    font-weight: 600;
     color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-left: 20px;
+    transition: all 0.3s ease;
 }
 
-.border-top {
-    border-top: 1px solid #e5e5e5;
+    .nav-link:hover {
+        color: #8f44fd;
+        transform: translateY(-3px);
+    }
+
+.navbar-toggler {
+    border: none;
+    background-color: transparent;
 }
 
-.border-bottom {
-    border-bottom: 1px solid #e5e5e5;
+.navbar-toggler-icon {
+    background-image: url('https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png');
+    background-size: cover;
+    width: 30px;
+    height: 30px;
 }
 
-.box-shadow {
-    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+.navbar-toggler:focus {
+    outline: none;
 }
 
-button.accept-policy {
-    font-size: 1rem;
-    line-height: inherit;
+.navbar-nav {
+    margin-left: auto;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background-color: #fff;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 998;
+        padding: 20px;
+        overflow-y: auto;
+        transition: all 0.3s ease;
+        transform: translateX(100%);
+    }
+
+        .navbar-collapse.show {
+            transform: translateX(0);
+        }
+
+    .navbar-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-link {
+        margin-bottom: 20px;
+    }
 }
