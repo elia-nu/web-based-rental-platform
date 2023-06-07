@@ -69,6 +69,22 @@ namespace Project4.Controllers
 
             return vehicle;
         }
+        [HttpGet("Available")]
+        public async Task<ActionResult<IEnumerable<Vehicle>>> GetAvailableVehicle()
+        {
+            if (_context.vehicles == null)
+            {
+                return NotFound();
+            }
+            var vehicle = await _context.vehicles.Where(e => e.Status == "Available").ToListAsync();
+
+            if (vehicle == null)
+            {
+                return NotFound();
+            }
+
+            return vehicle;
+        }
         // PUT: api/Vehicles/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -102,27 +118,14 @@ namespace Project4.Controllers
 
         // POST: api/Vehicles
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-
         [HttpPost]
-
         public async Task<ActionResult<Vehicle>> AddVehicle([FromForm] Vehicle vehicle)
         {
             vehicle.Vpath = await SaveImage(vehicle.ImageFile);
             _context.vehicles.Add(vehicle);
             await _context.SaveChangesAsync();
+
             return StatusCode(201);
-        }
-        [NonAction]
-        public async Task<string> SaveImage(IFormFile imageFile)
-        {
-            string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
-            imageName = imageName +  Path.GetExtension(imageFile.FileName);
-            var imagePath = Path.Combine(_env.ContentRootPath,"ClientApp/public/img", imageName);
-            using (var fileStream = new FileStream(imagePath, FileMode.Create))
-            {
-                await imageFile.CopyToAsync(fileStream);
-            }
-            return imageName;
         }
 
         // DELETE: api/Vehicles/5
@@ -138,7 +141,7 @@ namespace Project4.Controllers
             {
                 return NotFound();
             }
-
+            DeleteImage(vehicle.Vpath);
             _context.vehicles.Remove(vehicle);
             await _context.SaveChangesAsync();
 
@@ -146,28 +149,33 @@ namespace Project4.Controllers
         }
 
         [HttpGet("Search")]
-        public async Task<ActionResult<IEnumerable<Vehicle>>> SearchVehicleByData(string search, string date)
+        public async Task<ActionResult<IEnumerable<Vehicle>>> SearchVehicleByData(string search,  DateOnly date)
         {
-            if (string.IsNullOrEmpty(search))
-            {
-                return await _context.vehicles.Where(e => (e.Brand.Contains(search)) || e.AvailabilityDate.Contains(date)).ToListAsync();
-            }
-            else if (string.IsNullOrEmpty(date))
-            {
-                return await _context.vehicles.Where(e => (e.Brand.Contains(search)) || e.Type.Contains(search)).ToListAsync();
-            }
-                
-                return await _context.vehicles.Where(e => (e.Brand.Contains(search)) || e.Type.Contains(search)).ToListAsync();
+            return await _context.vehicles.Where(e => ((e.Brand.Contains(search) || e.Type.Contains(search)) && e.AvailabilityDate >= date) && e.Status == "Available").ToListAsync();
         }
-        
 
         private bool VehicleExists(int id)
         {
             return (_context.vehicles?.Any(e => e.Vid == id)).GetValueOrDefault();
         }
-
-
-
-
+        [NonAction]
+        public async Task<string> SaveImage(IFormFile imageFile)
+        {
+            string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
+            imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
+            var imagePath = Path.Combine(_env.ContentRootPath, "ClientApp/public/Image", imageName);
+            using (var fileStream = new FileStream(imagePath, FileMode.Create))
+            {
+                await imageFile.CopyToAsync(fileStream);
+            }
+            return imageName;
+        }
+        [NonAction]
+        public void DeleteImage(string imageName)
+        {
+            var imagePath = Path.Combine(_env.ContentRootPath, "Images", imageName);
+            if (System.IO.File.Exists(imagePath))
+                System.IO.File.Delete(imagePath);
+        }
     }
 }

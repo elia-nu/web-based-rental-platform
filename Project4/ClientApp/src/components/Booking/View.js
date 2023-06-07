@@ -35,43 +35,31 @@ const View = () => {
     }
       return (
           <Fragment>
-               <MDBTable>
-              <MDBTableHead>
-                  <tr>
-                      <th>ID</th>
-                      <th>Vehid</th>
-                      <th>Cusid</th>
-                      <th>Ownid</th>
-                      <th>Dateofrent</th>
-                      <th>Dateofreturn</th>
-                      <th>Price</th>
-                      <th>Transaction</th>
-                      <th>Confirm</th>
-                  </tr>
-              </MDBTableHead>
-              <MDBTableBody>
-                  {
-                      data.map((data, index) => (
-                          <tr key={index}>
-                              <td>{index + 1}</td>
-                              <td>{data.vehid}</td>
-                              <td>{data.cusid}</td>
-                              <td>{data.ownid}</td>
-                              <td>{data.dateofrent}</td>
-                              <td>{data.dateofreturn}</td>
-                              <td>{data.price}</td>
-                              <td>{data.transaction}</td>
-                              <td>{data.confirm}</td>
-                           
-                              <td>
-                                  <input type="submit" value="Delete" onClick={()=> DeleteBooking(data.bid)}/>
-                              
-                              </td>
-                          </tr>
-                      ))
-                  }
-              </MDBTableBody>
-               </MDBTable>
+              <div class="container">
+                  <div class="row">
+                      {data.map((data, index) => (
+                          <div class="col-lg-4 col-md-6 mb-4" key={index}>
+                              <div class="card h-100">
+                                  <div class="card-header">
+                                      <h5 class="card-title">{data.vehid}</h5>
+                                  </div>
+                                  <div class="card-body">
+                                      <p class="card-text"><strong>Customer ID:</strong> {data.cusid}</p>
+                                      <p class="card-text"><strong>Owner ID:</strong> {data.ownid}</p>
+                                      <p class="card-text"><strong>Date of Rental:</strong> {data.dateofrent}</p>
+                                      <p class="card-text"><strong>Date of Return:</strong> {data.dateofreturn}</p>
+                                      <p class="card-text"><strong>Price:</strong> {data.price}</p>
+                                      <p class="card-text"><strong>Transaction:</strong> {data.transaction}</p>
+                                      <p class="card-text"><strong>Confirmation Status:</strong> {data.confirm}</p>
+                                  </div>
+                                  <div class="card-footer">
+                                      <button class="btn btn-danger" onClick={() => DeleteBooking(data.bid)}>Delete</button>
+                                  </div>
+                              </div>
+                          </div>
+                      ))}
+                  </div>
+              </div>
   
           </Fragment>
          
