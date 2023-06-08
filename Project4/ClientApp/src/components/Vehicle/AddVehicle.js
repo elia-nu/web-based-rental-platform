@@ -95,7 +95,7 @@ const AddVehicle = () => {
         formData.append('imageFile', values.imageFile)
         formData.append('imageSrc', values.imageSrc)
         axios
-            .post("https://localhost:7045/api/Vehicles/", formData)
+            .post("https://localhost:7075/api/Vehicles/", formData)
             .then((res) => {
                 console.log(res.data);
                 toast.success("Vehicle added successfully!");

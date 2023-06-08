@@ -79,7 +79,7 @@ const Profile =() => {
           }
 
           return (
-<div class="card bg-light border border-primary">
+<div class="card bg-light border border-primary mx-auto">
 <ToastContainer/>
   <div class="card-header">
     <h5 class="card-title text-primary">User Profile</h5>
@@ -93,10 +93,10 @@ const Profile =() => {
       <label for="username" class="text-primary">User Name</label>
           <input type="text" class="form-control" id="username" name='username' placeholder={state.username}  disabled={!isEditing} onChange={(handleInputChange)} />
           <label for="email" class="text-primary">Email</label>
-          <input type="email" class="form-control" id="email" name='email' placeholder={state.email}  disabled={!isEditing} onChange={handleInputChange}/>   
+          <input type="email" class="form-control" id="email" name='email' placeholder={state.email}  disabled onChange={handleInputChange}/>   
           
           <label for="password" class="text-primary">Password</label>
-          <input type="password" class="form-control" id="password" name='password' placeholder={state.password}  disabled={!isEditing} onChange={handleInputChange}/>
+          <input type="password" class="form-control" id="password" name='password' placeholder={state.password}  disabled onChange={handleInputChange}/>
         
         
           <label for="firstName" class="text-primary">First Name</label>
@@ -120,7 +120,7 @@ const Profile =() => {
           
         
           <label for="driverLicense" class="text-primary">Driver's License</label>
-          <input type="text" class="form-control" id="driverLicense" name="driverlicense"placeholder={state.driverlicense}  disabled={!isEditing} onChange={handleInputChange}/>
+          <input type={isEditing ? "File" : "text"} class="form-control" id="driverLicense" name="driverlicense"placeholder={state.driverlicense}  disabled={!isEditing} onChange={handleInputChange}/>
           
         
           <label for="role" class="text-primary">Role</label>
@@ -136,7 +136,7 @@ const Profile =() => {
                 onChange={() => setIsEditing(!isEditing)}
               />
               <label className="form-check-label" htmlFor="flexCheckDefault">
-                Edit User Data
+                Edit Profile
               </label>
         </div>
 

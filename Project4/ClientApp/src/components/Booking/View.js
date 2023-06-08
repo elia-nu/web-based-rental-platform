@@ -24,7 +24,7 @@ const View = () => {
       })
     }
   function DeleteBooking(id) {
-      axios.delete("https://localhost:7045/api/BookingLogs/" + id)
+      axios.delete("https://localhost:7075/api/BookingLogs/" + id)
       .then(res => {
           alert("Booking deleted Successfully");
           Load();

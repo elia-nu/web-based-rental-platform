@@ -13,13 +13,13 @@ const EmployeeView =() => {
       Load()
   },[]);
   const Load = () => {
-      axios.get(`https://localhost:7045/api/Users/Confirm/${"Employee"}`)
+      axios.get(`https://localhost:7075/api/Users/Confirm/${"Employee"}`)
       .then(res => setData(res.data))
       .catch(err => console.log(err));
 
   };
   function DeleteBooking(id) {
-      axios.delete("https://localhost:7045/api/Users/" + id)
+      axios.delete("https://localhost:7075/api/Users/" + id)
       .then(res => {
           alert("User deleted Successfully");
           navigator("/search");

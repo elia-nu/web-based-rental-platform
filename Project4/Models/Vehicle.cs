@@ -13,7 +13,7 @@ namespace Project4.Models
         public string? Brand { get; set; }
         public string? Color { get; set; }
         public decimal? Price { get; set; }
-        public DateOnly? AvailabilityDate { get; set; }
+        public DateTime? AvailabilityDate { get; set; }
         public string? Ownerid { get; set; }
         public string? Plateno { get; set; }
         public string? Status { get; set; }

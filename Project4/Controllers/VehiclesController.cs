@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json.Linq;
+using Microsoft.Extensions.Hosting;
 using Project4.Data;
 using Project4.Models;
 
@@ -28,10 +28,10 @@ namespace Project4.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Vehicle>>> Getvehicles()
         {
-            if (_context.vehicles == null)
-            {
-                return NotFound();
-            }
+          if (_context.vehicles == null)
+          {
+              return NotFound();
+          }
             return await _context.vehicles.ToListAsync();
         }
 
@@ -39,10 +39,10 @@ namespace Project4.Controllers
         [HttpGet("{Ownerid}")]
         public async Task<ActionResult<IEnumerable<Vehicle>>> GetVehicle(string Ownerid)
         {
-            if (_context.vehicles == null)
-            {
-                return NotFound();
-            }
+          if (_context.vehicles == null)
+          {
+              return NotFound();
+          }
             var vehicle = await _context.vehicles.Where(e => e.Ownerid.Contains(Ownerid)).ToListAsync();
 
             if (vehicle == null)
@@ -119,7 +119,8 @@ namespace Project4.Controllers
         // POST: api/Vehicles
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Vehicle>> AddVehicle([FromForm] Vehicle vehicle)
+       
+         public async Task<ActionResult<Vehicle>> AddVehicle([FromForm] Vehicle vehicle)
         {
             vehicle.Vpath = await SaveImage(vehicle.ImageFile);
             _context.vehicles.Add(vehicle);
@@ -149,9 +150,9 @@ namespace Project4.Controllers
         }
 
         [HttpGet("Search")]
-        public async Task<ActionResult<IEnumerable<Vehicle>>> SearchVehicleByData(string search,  DateOnly date)
+        public async Task<ActionResult<IEnumerable<Vehicle>>> SearchVehicleByData(string search, DateTime date)
         {
-            return await _context.vehicles.Where(e => ((e.Brand.Contains(search) || e.Type.Contains(search)) && e.AvailabilityDate >= date) && e.Status == "Available").ToListAsync();
+                return await _context.vehicles.Where(e => ((e.Brand.Contains(search) || e.Type.Contains(search))&& e.AvailabilityDate >= date) && e.Status == "Available").ToListAsync();   
         }
 
         private bool VehicleExists(int id)

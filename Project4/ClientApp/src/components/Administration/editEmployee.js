@@ -1,7 +1,7 @@
-import React, { useReducer, useEffect } from 'react';
 import axios from 'axios';
+import React, { useEffect, useReducer } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer,toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -47,7 +47,7 @@ const EditEmployee = () => {
 
   const handleEdit = () => {
     axios
-      .put('https://localhost:7045/api/Users/' + state.id, {
+      .put('https://localhost:7075/api/Users/' + state.id, {
         userid: state.id,
         email: state.email,
         password: state.password,

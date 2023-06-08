@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MailKit.Security;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MimeKit.Text;
+using MimeKit;
 using Project4.Data;
 using Project4.Models;
+using MailKit.Net.Smtp;
+
 
 namespace Project4.Controllers
 {
@@ -133,6 +138,26 @@ namespace Project4.Controllers
         private bool BookingLogExists(int id)
         {
             return (_context.BookingLog?.Any(e => e.Bid == id)).GetValueOrDefault();
+        }
+        [HttpPost("Email")]
+        public IActionResult SendEmail(string body, string user, string email1, string d1, string d2)
+        {
+            var email = new MimeMessage();
+            email.From.Add(MailboxAddress.Parse("rowsa2000@gmail.com"));
+            email.To.Add(MailboxAddress.Parse(email1));
+            email.Subject = "booking";
+            email.Body = new TextPart(TextFormat.Html)
+            {
+                Text = "dear " + user +
+                "have booking from " + d1 + " to " + d2 +
+                "sdwdaedjqdiqodn djkqwdnoqwidmqw;dqw qw dqd qd qdd" + body + "doqdm;qwd"
+            };
+            using var smtp = new SmtpClient();
+            smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+            smtp.Authenticate("rowsa2000@gmail.com", "uyhvwiucbjerndgg");
+            smtp.Send(email);
+            smtp.Disconnect(true);
+            return Ok();
         }
     }
 }

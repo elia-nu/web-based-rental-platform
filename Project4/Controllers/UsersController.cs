@@ -15,10 +15,12 @@ namespace Project4.Controllers
     public class UsersController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _env;
 
-        public UsersController(ApplicationDbContext context)
+        public UsersController(ApplicationDbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         // GET: api/Users
@@ -84,12 +86,13 @@ namespace Project4.Controllers
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<User>> PostUser([FromForm] User user)
         {
           if (_context.Users == null)
           {
               return Problem("Entity set 'ApplicationDbContext.Users'  is null.");
           }
+            user.Driverlicense = await SaveImage(user.Driverlicenses);
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
@@ -171,6 +174,18 @@ namespace Project4.Controllers
                 return false;
             }
             return true;
+        }
+        [NonAction]
+        public async Task<string> SaveImage(IFormFile imageFile)
+        {
+            string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
+            imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
+            var imagePath = Path.Combine(_env.ContentRootPath, "ClientApp/public/Image", imageName);
+            using (var fileStream = new FileStream(imagePath, FileMode.Create))
+            {
+                await imageFile.CopyToAsync(fileStream);
+            }
+            return imageName;
         }
     }
 
