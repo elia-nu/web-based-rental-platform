@@ -53,7 +53,7 @@ namespace Project4.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "vehicles",
+                name: "Vehicles",
                 columns: table => new
                 {
                     Vid = table.Column<int>(type: "int", nullable: false)
@@ -71,7 +71,7 @@ namespace Project4.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_vehicles", x => x.Vid);
+                    table.PrimaryKey("PK_Vehicles", x => x.Vid);
                 });
         }
 
@@ -85,7 +85,7 @@ namespace Project4.Migrations
                 name: "Users");
 
             migrationBuilder.DropTable(
-                name: "vehicles");
+                name: "Vehicles");
         }
     }
 }

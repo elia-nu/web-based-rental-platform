@@ -125,52 +125,69 @@ const dataAssign = () => {
   return (
     <>
     <ToastContainer /> 
-    <div className="container">
-      <div className="row">
-        <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
-          <div className="card  mx-auto">
-            <div className="card-body ">
-              <h5 className="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
-              <form>
-                <div className="form-floating mb-3">
-                  <input
-                    type="email"
-                    className={`form-control ${emailError ? 'is-invalid' : ''}`} // Add 'is-invalid' class to input if emailError state is true
-                    id="floatingInput"
-                    placeholder="Email address"
-                    onChange={handleEmailChange}
-                  />
-                  <label htmlFor="floatingInput">Email address</label>
-                  {emailError && <div className="invalid-feedback">Please enter a valid email address.</div>} {/* Show error message if emailError state is true */}
-                </div>
-                <div className="form-floating mb-3">
-                  <input
-                    type="password"
-                    className={`form-control ${passwordError ? 'is-invalid' : ''}`} // Add 'is-invalid' class to input if passwordError state is true
-                    id="floatingPassword"
-                    placeholder="Password"
-                    onChange={handlePasswordChange}
-                  />
-                  <label htmlFor="floatingPassword">Password</label>
-                  {passwordError && <div className="invalid-feedback"> Password must be at least 6 characters.</div>} {/* Show error message if passwordError state is true */}
+
+
+
+
+          <section class="vh-100">
+              <div class="container-fluid h-custom">
+                  <div class="row d-flex justify-content-center align-items-center h-100">
+                      <div class="col-md-9 col-lg-6 col-xl-5">
+                          <img src="./image/8357614.jpg"
+                              class="img-fluid" alt="Sample image"></img>
+                      </div>
+                      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                          <form>
+                              <div className="form-floating mb-3">
+                                  <input
+                                      type="email"
+                                      className={`form-control ${emailError ? 'is-invalid' : ''}`} // Add 'is-invalid' class to input if emailError state is true
+                                      id="floatingInput"
+                                      placeholder="Email address"
+                                      onChange={handleEmailChange}
+                                  />
+                                  <label htmlFor="floatingInput">Email address</label>
+                                  {emailError && <div className="invalid-feedback">Please enter a valid email address.</div>} {/* Show error message if emailError state is true */}
+                              </div>
+                              <div className="form-floating mb-3">
+                                  <input
+                                      type="password"
+                                      className={`form-control ${passwordError ? 'is-invalid' : ''}`} // Add 'is-invalid' class to input if passwordError state is true
+                                      id="floatingPassword"
+                                      placeholder="Password"
+                                      onChange={handlePasswordChange}
+                                  />
+                                  <label htmlFor="floatingPassword">Password</label>
+                                  {passwordError && <div className="invalid-feedback"> Password must be at least 6 characters.</div>} {/* Show error message if passwordError state is true */}
+                              </div>
+                              <div className="form-check mb-3">
+                                  <input className="form-check-input" type="checkbox" value="" id="rememberPasswordCheck" />
+                                  <label className="form-check-label" htmlFor="rememberPasswordCheck">
+                                      Remember password
+                                  </label>
+                              </div>
+                              <div className="d-grid">
+                                  <input className="btn btn-primary btn-login text-uppercase fw-bold" type="button" value="Login" onClick={handleLogin} />
+                                  <a href="/forgetpassword">Forgot password?</a>
+                              </div>
+                          </form>
+                      </div>
                   </div>
-                  <div className="form-check mb-3">
-              <input className="form-check-input" type="checkbox" value="" id="rememberPasswordCheck" />
-              <label className="form-check-label" htmlFor="rememberPasswordCheck">
-                Remember password
-              </label>
-            </div>
-            <div className="d-grid">
-              <input className="btn btn-primary btn-login text-uppercase fw-bold" type="button" value="Login" onClick={handleLogin} />
-              <a href="/forgetpassword">Forgot password?</a>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</>
+              </div>
+
+          </section>
+
+
+
+
+      </>
+
+
+
+
+
+
+
 );
 }
 

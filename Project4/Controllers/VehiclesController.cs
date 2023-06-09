@@ -26,24 +26,24 @@ namespace Project4.Controllers
 
         // GET: api/Vehicles
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Vehicle>>> Getvehicles()
+        public async Task<ActionResult<IEnumerable<Vehicle>>> GetVehicles()
         {
-          if (_context.vehicles == null)
+          if (_context.Vehicles == null)
           {
               return NotFound();
           }
-            return await _context.vehicles.ToListAsync();
+            return await _context.Vehicles.ToListAsync();
         }
 
         // GET: api/Vehicles/5
         [HttpGet("{Ownerid}")]
         public async Task<ActionResult<IEnumerable<Vehicle>>> GetVehicle(string Ownerid)
         {
-          if (_context.vehicles == null)
+          if (_context.Vehicles == null)
           {
               return NotFound();
           }
-            var vehicle = await _context.vehicles.Where(e => e.Ownerid.Contains(Ownerid)).ToListAsync();
+            var vehicle = await _context.Vehicles.Where(e => e.Ownerid.Contains(Ownerid)).ToListAsync();
 
             if (vehicle == null)
             {
@@ -56,11 +56,11 @@ namespace Project4.Controllers
         [HttpGet("Detail/{vid}")]
         public async Task<ActionResult<Vehicle>> GetDetailVehicle(int Vid)
         {
-            if (_context.vehicles == null)
+            if (_context.Vehicles == null)
             {
                 return NotFound();
             }
-            var vehicle = await _context.vehicles.FindAsync(Vid);
+            var vehicle = await _context.Vehicles.FindAsync(Vid);
 
             if (vehicle == null)
             {
@@ -72,11 +72,11 @@ namespace Project4.Controllers
         [HttpGet("Available")]
         public async Task<ActionResult<IEnumerable<Vehicle>>> GetAvailableVehicle()
         {
-            if (_context.vehicles == null)
+            if (_context.Vehicles == null)
             {
                 return NotFound();
             }
-            var vehicle = await _context.vehicles.Where(e => e.Status == "Available").ToListAsync();
+            var vehicle = await _context.Vehicles.Where(e => e.Status == "Available").ToListAsync();
 
             if (vehicle == null)
             {
@@ -123,7 +123,7 @@ namespace Project4.Controllers
          public async Task<ActionResult<Vehicle>> AddVehicle([FromForm] Vehicle vehicle)
         {
             vehicle.Vpath = await SaveImage(vehicle.ImageFile);
-            _context.vehicles.Add(vehicle);
+            _context.Vehicles.Add(vehicle);
             await _context.SaveChangesAsync();
 
             return StatusCode(201);
@@ -133,17 +133,17 @@ namespace Project4.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVehicle(int id)
         {
-            if (_context.vehicles == null)
+            if (_context.Vehicles == null)
             {
                 return NotFound();
             }
-            var vehicle = await _context.vehicles.FindAsync(id);
+            var vehicle = await _context.Vehicles.FindAsync(id);
             if (vehicle == null)
             {
                 return NotFound();
             }
             DeleteImage(vehicle.Vpath);
-            _context.vehicles.Remove(vehicle);
+            _context.Vehicles.Remove(vehicle);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -152,12 +152,12 @@ namespace Project4.Controllers
         [HttpGet("Search")]
         public async Task<ActionResult<IEnumerable<Vehicle>>> SearchVehicleByData(string search, DateTime date)
         {
-                return await _context.vehicles.Where(e => ((e.Brand.Contains(search) || e.Type.Contains(search))&& e.AvailabilityDate >= date) && e.Status == "Available").ToListAsync();   
+                return await _context.Vehicles.Where(e => ((e.Brand.Contains(search) || e.Type.Contains(search))&& e.AvailabilityDate >= date) && e.Status == "Available").ToListAsync();   
         }
 
         private bool VehicleExists(int id)
         {
-            return (_context.vehicles?.Any(e => e.Vid == id)).GetValueOrDefault();
+            return (_context.Vehicles?.Any(e => e.Vid == id)).GetValueOrDefault();
         }
         [NonAction]
         public async Task<string> SaveImage(IFormFile imageFile)
@@ -180,3 +180,5 @@ namespace Project4.Controllers
         }
     }
 }
+
+

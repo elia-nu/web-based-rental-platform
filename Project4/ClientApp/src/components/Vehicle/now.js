@@ -394,9 +394,9 @@ public class VehiclesController : Controller
     [HttpGet]
     public IActionResult Index()
     {
-        var vehicles = _vehicleRepository.GetAllVehicles();
+        var Vehicles = _vehicleRepository.GetAllVehicles();
 
-        return View(vehicles);
+        return View(Vehicles);
     }
 
     [HttpGet("{id}")]

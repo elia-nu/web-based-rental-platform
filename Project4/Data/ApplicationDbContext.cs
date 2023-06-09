@@ -14,7 +14,7 @@ namespace Project4.Data
 
         public DbSet<BookingLog> BookingLog { get; set; }
        public DbSet<User> Users { get; set; }
-        public DbSet<Vehicle> vehicles { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
         
     }
 }

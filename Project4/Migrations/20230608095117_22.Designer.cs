@@ -153,7 +153,7 @@ namespace Project4.Migrations
 
                     b.HasKey("Vid");
 
-                    b.ToTable("vehicles");
+                    b.ToTable("Vehicles");
                 });
 #pragma warning restore 612, 618
         }

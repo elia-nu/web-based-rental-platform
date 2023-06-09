@@ -5,6 +5,8 @@ import EditVehicle from "./EditVehicle";
 import { useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+
+import "./searc.css";
 const Detail = () => {
     const [data, setData] = useState([]);
     const item = useMemo(() => JSON.parse(localStorage.getItem("data")), []);
@@ -63,24 +65,27 @@ const Detail = () => {
       localStorage.setItem("veliclephoto", JSON.stringify(veliclePhoto));
     };
     return (
-      <Fragment>
-  
-         
-   
-
-            <Card className="car-details">
-                <Card.Img variant="top" src="/img/sun.jpg" alt={`${data.type} ${data.type}`} />
-                <Card.Body>
-                    <Card.Title>{data.type} {data.brand}</Card.Title>
-                    <Card.Text>
-                        <ul>
-                            <li><strong>Year:</strong> {data.color}</li>
-                            <li><strong>Price:</strong> ${data.year}</li>
-                            <li><strong>Color:</strong> {data.availabilityDate}</li>
-                            <li><strong>Mileage:</strong> {data.price} miles</li>
-                            <li><strong>Description:</strong> {data.plateno}</li>
-                        </ul>
-                    </Card.Text>
+        <Fragment className="su">
+            
+                <div className="vehicle-card" >
+                    <div className="vehicle-card-header">
+                        <img
+                            src={"./image/sun.jpg"}
+                            className="card-img-top"
+                            alt={"ww"}
+                        />
+                    <h5 className="vehicle-card-title">Year: {data.year}</h5>
+                    <h5 className="vehicle-card-title">Type: {data.type}</h5>
+                    </div>
+                    <div className="vehicle-card-body">
+                    <h6 className="vehicle-card-text">Brand: {data.brand}</h6>
+                    <h6 className="vehicle-card-text">Color: {data.color}</h6>
+                    <h5 className="vehicle-card-title">Price: {data.price}</h5>
+                    <h6 className="vehicle-card-text">Plate: {data.plateNo}</h6>
+                    <h6 className="vehicle-card-text">Status: {data.status}</h6>
+                    <h6 className="vehicle-card-text">Availability Date: {data.availabilityDate}</h6>
+                    </div>
+                    <div className="vehicle-card-footer">
                     <Button variant="primary" onClick={() =>
                         handleDataEdit(
                             data.vid,
@@ -97,10 +102,12 @@ const Detail = () => {
                         )}>Edit
                     </Button>
                     <Button variant="primary" onClick={() => handleDataBook(data.vid, data.price)}>Book</Button>
-                </Card.Body>
-            </Card>
+                    </div>
+                </div>
+            ))
 
-      </Fragment>
+
+        </Fragment>
   ); 
 };     
 export default Detail;

@@ -7,3 +7,47 @@
     margin: 15PX;
     margin-left: 50px;
   }
+.vehicle-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.vehicle-card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.vehicle-card-title {
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.vehicle-card-text {
+    color: #666;
+    font-size: 14px;
+}
+
+.vehicle-card-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.vehicle-card-btn-edit, .vehicle-card-btn-delete {
+    background-color: transparent;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+    .vehicle-card-btn-edit:hover, .vehicle-card-btn-delete:hover {
+        color: #333;
+    }

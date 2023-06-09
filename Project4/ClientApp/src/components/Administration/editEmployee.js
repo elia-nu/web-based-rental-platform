@@ -1,7 +1,7 @@
+import React, { useReducer, useEffect } from 'react';
 import axios from 'axios';
-import React, { useEffect, useReducer } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 

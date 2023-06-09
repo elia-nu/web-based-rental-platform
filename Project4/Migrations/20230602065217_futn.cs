@@ -13,7 +13,7 @@ namespace Project4.Migrations
         {
             migrationBuilder.AlterColumn<DateTime>(
                 name: "AvailabilityDate",
-                table: "vehicles",
+                table: "Vehicles",
                 type: "datetime2",
                 nullable: true,
                 oldClrType: typeof(string),
@@ -73,7 +73,7 @@ namespace Project4.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "AvailabilityDate",
-                table: "vehicles",
+                table: "Vehicles",
                 type: "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(DateTime),

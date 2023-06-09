@@ -72,15 +72,15 @@ export class NavMenu extends Component {
     return (
         <header>
             <Navbar
-                className="navbar-expand-md navbar-light bg-light  border-bottom"
+                className="navbar-expand-md navbar-light bg-light border-bottom"
                 expand="md"
             >
-                <NavbarBrand tag={Link} to="/search">
-                    ZUES
+                <NavbarBrand tag={Link} to="/search" className="mr-auto">
+                    <img src="/logo.png" alt="ZUES" className="logo" />
                 </NavbarBrand>
-                <NavbarToggler onClick={this.toggleNavbar} />
+                <NavbarToggler onClick={this.toggleNavbar} className="d-md-none" />
                 <Collapse isOpen={!this.state.collapsed} navbar>
-                    <ul className="navbar-nav ml-auto">
+                    <ul className="navbar-nav ml-auto flex-column flex-md-row">
                         {links.map((link) => (
                             <NavItem key={link.link}>
                                 <NavLink tag={Link} className="nav-link-hover" to={link.link}>
@@ -88,33 +88,37 @@ export class NavMenu extends Component {
                                 </NavLink>
                             </NavItem>
                         ))}
-                        {shouldShowLogout && (
-                            <Fragment>
-                                <NavItem>
-                                    <NavLink
-                                        tag={Link}
-                                        to="/profile"
-                                        className="nav-link text-dark nav-link-hover"
-                                    >
-                                        {username}
-                                    </NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink
-                                        tag={Link}
-                                        to="/search"
-                                        className="nav-link text-dark nav-link-hover"
-                                        onClick={logout}
-                                    >
-                                        Logout
-                                    </NavLink>
-                                </NavItem>
-                            </Fragment>
-                        )}
+                        <div className="ss">
+
+                            {shouldShowLogout && (
+                                <Fragment>
+                                    <NavItem>
+                                        <NavLink
+                                            tag={Link}
+                                            to="/profile"
+                                            className="nav-link text-dark nav-link-hover"
+                                        >
+                                            {username}
+                                        </NavLink>
+                                    </NavItem>
+                                    <NavItem>
+                                        <NavLink
+                                            tag={Link}
+                                            to="/search"
+                                            className="nav-link text-dark nav-link-hover"
+                                            onClick={logout}
+                                        >
+                                            Logout
+                                        </NavLink>
+                                    </NavItem>
+                                </Fragment>
+                            )}
+
+                        </div>
+                        
                     </ul>
                 </Collapse>
             </Navbar>
-
         </header>
     );
   }

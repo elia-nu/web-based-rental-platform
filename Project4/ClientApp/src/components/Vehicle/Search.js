@@ -2,13 +2,17 @@ import React, { useState, useEffect, useCallback } from "react";
 import "./search.css";
 import Pagination from '../Pagination';
 import axios from "axios";
-import SearchResult from './SearchResult';
 import { toast } from "react-toastify";
-
-
+import image from "./download.jpg"
+import { Container, Card, InputGroup, FormControl, Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 const VEHICLE_API_URL = "https://localhost:7075/api/Vehicles";
+const CAR_IMAGE_URL = "/Images/download232817692.jpg";
 
+
+
+
+ 
 
 
 const Search = () => {
@@ -18,17 +22,17 @@ const Search = () => {
     const [date, setDate] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage,] = useState(10);
+    const [vehicleType, setVehicleType] = useState('');
     const navigate = useNavigate();
     useEffect(() => {
         Load();
     }, []);
 
- 
-
     const Load = useCallback(() => {
         setIsLoading(true);
+        const url = vehicleType ? `${VEHICLE_API_URL}/Available?type=${vehicleType}` : `${VEHICLE_API_URL}/Available`;
         axios
-            .get(`${VEHICLE_API_URL}/Available`)
+            .get(url)
             .then((result) => {
                 setData(result.data);
                 console.log(result.data);
@@ -39,18 +43,18 @@ const Search = () => {
             .finally(() => {
                 setIsLoading(false);
             });
-    }, []);
-
+    }, [vehicleType]);
     const handleSearch = useCallback(() => {
-        if (searchText.length > 0 || date.length > 0) {
+        if (searchText.length > 0 || date.length > 0 || vehicleType.length > 0 || vehicleType.length > 0) {
             setIsLoading(true);
             localStorage.setItem("searchtext", JSON.stringify(searchText));
             localStorage.setItem("Searchdate", JSON.stringify(date));
+            localStorage.setItem("vehicleType", JSON.stringify(vehicleType));
             navigate('/searchresult');
         } else {
             Load();
         }
-    }, [searchText, date, Load]);
+    }, [searchText, date, vehicleType, Load]);
 
 
     const handleData = useCallback((id) => {
@@ -64,63 +68,97 @@ const Search = () => {
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
+    const handleVehicleTypeChange = useCallback((event) => {
+        setVehicleType(event.target.value);
+    }, []);
+
     return (
         <>
-            <section class="hero1">
-                <div class="container">
-                    <h1 class="hero-title">Rent the Car of Your Dreams Today</h1>
-                    <p class="hero-description">Find the perfect car for your trip</p>
-                    <div class="hero d-flex align-items-center">
-                        <div class="card mx-auto w-75 mt-0 p-3 p-md-5 text-center">
-                            <h2 class="mb-4">Search for Your Dream Car</h2>
-                            <form>
-                                <div class="input-group">
-                                    <input
-                                        type="search"
-                                        class="form-control rounded"
-                                        id="search"
-                                        placeholder="Search cars..."
-                                        aria-label="Search"
-                                        aria-describedby="search-addon"
-                                        onChange={(e) => setSearchText(e.target.value)}
+           
+  
+            
+                <InputGroup className="mb-3">
+                    <FormControl
+                        placeholder="Search vehicle by name"
+                        aria-label="Search vehicle by name"
+                        aria-describedby="basic-addon2"
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
+                    />
+                    <FormControl
+                        type="date"
+                        placeholder="Pickup date"
+                        aria-label="Pickup date"
+                        aria-describedby="basic-addon2"
+                        value={date}
+                        onChange={(e) => setDate(e.target.value)}
+                    />
+                    <FormControl
+                        as="select"
+                        value={vehicleType}
+                        onChange={handleVehicleTypeChange}
+                    >
+                        <option value="">All vehicle types</option>
+                        <option value="SUV">SUV</option>
+                        <option value="Sedan">Sedan</option>
+                        <option value="Hatchback">Hatchback</option>
+                    </FormControl>
+                    <Button
+                        variant="outline-secondary"
+                        id="button-addon2"
+                        onClick={handleSearch}
+                    >
+                        Search
+                    </Button>
+                </InputGroup>
+
+            <div className="container py-5">
+                <h2 className="text-center mb-4">Browse Our Selection of Cars</h2>
+                {isLoading ? (
+                    <div>Loading...</div>
+                ) : (
+                        <div className="card-grid">
+                            {currentPosts.map((item) => (
+                                <div key={item.id} className="card">
+                                    <img
+                                        src={`./Image/${item.vpath}`}
+                                        className="card-img-top"
+                                        alt={`Car ${item.vid}`}
                                     />
-                                    <input
-                                        type="date"
-                                        class="form-control rounded"
-                                        placeholder="Pickup Date"
-                                        aria-label="Pickup Date"
-                                        aria-describedby="search-addon"
-                                        onChange={(e) => setDate(e.target.value)}
-                                    />
-                                    <input
-                                        type="date"
-                                        class="form-control rounded"
-                                        placeholder="Return Date"
-                                        aria-label="Return Date"
-                                        aria-describedby="search-addon"
-                                        onChange={(e) => setDate(e.target.value)}
-                                    />
-                                    <button
-                                        class="btn btn-primary rounded"
-                                        type="button"
-                                        onClick={handleSearch}
-                                    >
-                                        Search
-                                    </button>
+                                    <div className="card-body">
+                                        <h5 className="card-title">{item.brand} {item.type}</h5>
+                                        <p className="card-text"><strong>Year:</strong> {item.year}</p>
+                                        <p className="card-text">
+                                            <strong>Price:</strong> <span className="price">${item.price}</span>
+                                        </p>
+                                        <p className="card-text"><strong>Availability:</strong> {item.availabilityDate}</p>
+                                        <div className="card-footer">
+                                            <a
+                                                href="/detail"
+                                                className="btn"
+                                                onClick={() => handleData(item.vid)}
+                                            >
+                                                Details
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
-                            </form>
+                            ))}
                         </div>
-                    </div>
-                </div>
-            </section>
+                )}
 
+                <Pagination
+                    postsPerPage={postsPerPage}
+                    totalPosts={data.length}
+                    paginate={paginate}
+                />
+            </div>
+        
 
-            
-            <SearchResult/>
-            
-
-
+        
         </>
+
+        
     );
 };
 
