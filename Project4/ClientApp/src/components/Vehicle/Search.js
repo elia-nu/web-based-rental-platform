@@ -30,9 +30,8 @@ const Search = () => {
 
     const Load = useCallback(() => {
         setIsLoading(true);
-        const url = vehicleType ? `${VEHICLE_API_URL}/Available?type=${vehicleType}` : `${VEHICLE_API_URL}/Available`;
         axios
-            .get(url)
+            .get(`${VEHICLE_API_URL}/Available`)
             .then((result) => {
                 setData(result.data);
                 console.log(result.data);
@@ -43,18 +42,18 @@ const Search = () => {
             .finally(() => {
                 setIsLoading(false);
             });
-    }, [vehicleType]);
+    }, []);
     const handleSearch = useCallback(() => {
-        if (searchText.length > 0 || date.length > 0 || vehicleType.length > 0 || vehicleType.length > 0) {
+        if (searchText.length > 0 || date.length > 0 || vehicleType.length > 0 ) {
             setIsLoading(true);
             localStorage.setItem("searchtext", JSON.stringify(searchText));
             localStorage.setItem("Searchdate", JSON.stringify(date));
-            localStorage.setItem("vehicleType", JSON.stringify(vehicleType));
+         
             navigate('/searchresult');
         } else {
             Load();
         }
-    }, [searchText, date, vehicleType, Load]);
+    }, [searchText, date, Load]);
 
 
     const handleData = useCallback((id) => {
@@ -72,9 +71,62 @@ const Search = () => {
         setVehicleType(event.target.value);
     }, []);
 
+    const handleCategorySearch = useCallback(
+        (type) => {
+            setIsLoading(true);
+            axios
+                .get(`${VEHICLE_API_URL}/Catagory`, {
+                    params: {
+                        type: type,
+                    },
+                })
+                .then((result) => {
+                    setData(result.data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+                .finally(() => {
+                    setIsLoading(false);
+                });
+        },
+        [setData]
+    );
+
     return (
         <>
-           
+            <a
+                href="/detail"
+                className="btn"
+                onClick={() => handleCategorySearch(SUV)}
+            >
+                SUV
+            </a><a
+                href="/detail"
+                className="btn"
+                onClick={() => handleCategorySearch(Truck)}
+            >
+                TRUCK
+            </a><a
+                href="/detail"
+                className="btn"
+                onClick={() => handleCategorySearch(mini - cuop)}
+            >
+                cuop
+            </a><a
+                href="/detail"
+                className="btn"
+                onClick={() => handleCategorySearch(minivan)}
+            >
+                MINIVAN
+            </a>
+            <a
+                href="/detail"
+                className="btn"
+                onClick={() => handleCategorySearch(van)}
+            >
+                VAN
+            </a>
   
             
                 <InputGroup className="mb-3">
@@ -93,16 +145,7 @@ const Search = () => {
                         value={date}
                         onChange={(e) => setDate(e.target.value)}
                     />
-                    <FormControl
-                        as="select"
-                        value={vehicleType}
-                        onChange={handleVehicleTypeChange}
-                    >
-                        <option value="">All vehicle types</option>
-                        <option value="SUV">SUV</option>
-                        <option value="Sedan">Sedan</option>
-                        <option value="Hatchback">Hatchback</option>
-                    </FormControl>
+                   
                     <Button
                         variant="outline-secondary"
                         id="button-addon2"
