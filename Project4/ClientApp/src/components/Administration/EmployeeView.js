@@ -42,7 +42,7 @@ const EmployeeView =() => {
                                       <div class="card-body">
 
                                           <h5 class="card-title"> Email: {data.email}</h5>
-
+                                          
                                       </div>
                                   </div>
                                   <div class="col-sm-3">

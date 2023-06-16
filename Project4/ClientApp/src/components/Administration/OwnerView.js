@@ -36,51 +36,50 @@ const OwnerView =() => {
                           <div key={index} class=" card" >
                               <div class="row no-gutters">
                                   <div class="col-sm-3">
-                                      <h5 class="card-title"> user: {data.username}</h5>
+                                      <p className="card-text"><strong>UserName:</strong> {data.userName}</p>
                                   </div>
                                   <div class="col-sm-3">
                                       <div class="card-body">
 
-                                          <h5 class="card-title"> Email: {data.email}</h5>
+                                          <p className="card-text"><strong>Email:</strong> {data.email}</p>
 
                                       </div>
                                   </div>
                                   <div class="col-sm-3">
                                       <div class="card-body">
 
-                                          <h6 class="card-text"> FirstName:{data.firstname}</h6>
+                                          <p className="card-text"><strong>FirstName:</strong> {data.firstName}</p>
                                       </div>
                                   </div>
                                   <div class="col-sm-3">
                                       <div class="card-body">
 
-                                          <h6 class="card-text"> LastName:{data.lastname}</h6>
+                                          <p className="card-text"><strong>LastName:</strong> {data.lastName}</p>
                                       </div>
                                   </div>
                                   <div class="col-sm-3">
-                                      <h5 class="card-title"> Gender: {data.gender}</h5>
+                                      <p className="card-text"><strong>Gender:</strong> {data.gender}</p>
 
                                   </div>
                                   <div class="col-sm-3">
                                       <div class="card-body">
 
-                                          <h5 class="card-title"> Date of Birth: {data.dateofbirth}</h5>
+                                          <p className="card-text"><strong>Dateofbirth:</strong> {data.dateofBirth}</p>
 
-                                      </div>
-                                  </div>
-                                  <div class="col-sm-3">
-                                      <div class="card-body">
-
-                                          <h6 class="card-text"> Phone Number: {data.phonenumber}</h6>
                                       </div>
                                   </div>
                                   <div class="col-sm-3">
                                       <div class="card-body">
 
-                                          <h6 class="card-text"> Role: {data.role}</h6>
+                                          <p className="card-text"><strong>Phonenumber:</strong> {data.phoneNumber}</p>
                                       </div>
                                   </div>
-
+                                  <div class="col-sm-3">
+                                      <div class="card-body">
+                                          <p className="card-text"><strong>Role:</strong> {data.role}</p>
+                                      </div>
+                                  </div>
+                                
                               </div>
                               <div class="card-footer">
                                   <a href="/profile">Forgot password?</a>
